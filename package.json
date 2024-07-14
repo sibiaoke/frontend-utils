@@ -1,0 +1,39 @@
+{
+  "name": "@sibiaoke/utils",
+  "version": "1.0.0",
+  "description": "A frontend utils library",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+github.com:sibiaoke/frontend-utils.git"
+  },
+  "keywords": [
+    "frontend",
+    "utils"
+  ],
+  "author": "vickyhoo <vickyhoo.dev@gmail.com>",
+  "license": "Apache-2.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.3.1",
+    "vitepress": "^1.3.0",
+    "vitest": "^2.0.2"
+  },
+  "dependencies": {
+    "ky": "^1.4.0"
+  }
+}
