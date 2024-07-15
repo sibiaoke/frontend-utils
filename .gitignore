@@ -37,3 +37,6 @@ Thumbs.db
 # Vitepress
 docs/.vitepress/dist
 docs/.vitepress/cache
+
+# Coverage directory
+coverage/

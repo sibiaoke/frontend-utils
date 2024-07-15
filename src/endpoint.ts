@@ -22,6 +22,7 @@ let kyInstance = new Proxy<KyInstance>(ky, {
   get: () => {
     return () => {
       console.error('@sibiaoke/utils [endpoint]: Please call init() first.');
+      throw new Error('@sibiaoke/utils [endpoint]: Please call init() first.');
     }
   }
 })
@@ -93,11 +94,11 @@ const downloadFile = async (response: Response, defaultFileName: string) => {
 };
 
 const endpoint = {
-  get: (url: string, params = {}, options?: Options) => kyInstance.get(url, { searchParams: params, ...options }).json(),
-  post: (url: string, data = {}, options?: Options) => kyInstance.post(url, { json: data, ...options }).json(),
-  put: (url: string, data = {}, options?: Options) => kyInstance.put(url, { json: data, ...options }).json(),
-  delete: (url: string, options?: Options) => kyInstance.delete(url, options).json(),
-  upload: (url: string, data: FormData, options?: Options) => kyInstance.post(url, { body: data, headers: { 'Content-Type': 'multipart/form-data' }, ...options }).json(),
+  get: async (url: string, params = {}, options?: Options) => await kyInstance.get(url, { searchParams: params, ...options }).json(),
+  post: async (url: string, data = {}, options?: Options) => await kyInstance.post(url, { json: data, ...options }).json(),
+  put: async (url: string, data = {}, options?: Options) => await kyInstance.put(url, { json: data, ...options }).json(),
+  delete: async (url: string, options?: Options) => await kyInstance.delete(url, options).json(),
+  upload: async (url: string, data: FormData, options?: Options) => await kyInstance.post(url, { body: data, headers: { 'Content-Type': 'multipart/form-data' }, ...options }).json(),
   download: async (url: string, options: { method?: 'get' | 'post', params?: any, data?: any, defaultFileName: string }) => {
     const { method = 'get', params, data, defaultFileName } = options;
     let response: Response;
@@ -107,7 +108,8 @@ const endpoint = {
       response = await kyInstance.post(url, { json: data });
     }
     await downloadFile(response, defaultFileName);
-  }
+  },
+  getInstance: () => kyInstance
 };
 
 export default endpoint;
