@@ -51,7 +51,7 @@ export const init = (opt: Opt) => {
         ...(opt?.hooks?.beforeRequest || [])
       ],
       afterResponse: [
-        async (request, options, response) => {
+        async (_request, _options, response) => {
           if (!response.ok) {
             const error = await response.json();
             const errorMessage = error.message || codeMessage[response.status] || '发生未知错误';
