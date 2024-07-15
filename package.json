@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "A frontend utils library",
   "type": "module",
-  "main": "dist/sibiaoke-utils.js",
+  "main": "dist/sibiaoke-utils.umd.js",
   "module": "dist/sibiaoke-utils.es.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+github.com:sibiaoke/frontend-utils.git"
+    "url": "git+https://github.com/sibiaoke/frontend-utils.git"
   },
   "keywords": [
     "frontend",
