@@ -6,6 +6,13 @@
   "main": "dist/sibiaoke-utils.umd.js",
   "module": "dist/sibiaoke-utils.es.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/sibiaoke-utils.es.js",
+      "require": "./dist/sibiaoke-utils.umd.js"
+    }
+  },
   "files": [
     "dist"
   ],
