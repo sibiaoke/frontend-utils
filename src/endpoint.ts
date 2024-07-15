@@ -23,16 +23,16 @@ let kyInstance = new Proxy<KyInstance>(ky, {
     return () => {
       console.error('@sibiaoke/utils [endpoint]: Please call init() first.');
       throw new Error('@sibiaoke/utils [endpoint]: Please call init() first.');
-    }
+    };
   }
-})
+});
 
-interface Opt extends Options {
-  getRequestHeader?: () => Record<string, string>
-  toastFunction?: (message: string) => void
-}
+type EndpointInitOpt = {
+  getRequestHeader?: () => Record<string, string>;
+  toastFunction?: (message: string) => void;
+} & Options;
 
-export const init = (opt: Opt) => {
+const init = (opt: EndpointInitOpt) => {
   const { getRequestHeader, toastFunction = console.error } = opt;
   kyInstance = ky.create({
     prefixUrl: opt.prefixUrl || '/api',
@@ -93,13 +93,22 @@ const downloadFile = async (response: Response, defaultFileName: string) => {
   window.URL.revokeObjectURL(url);
 };
 
-const endpoint = {
-  get: async (url: string, params = {}, options?: Options) => await kyInstance.get(url, { searchParams: params, ...options }).json(),
-  post: async (url: string, data = {}, options?: Options) => await kyInstance.post(url, { json: data, ...options }).json(),
-  put: async (url: string, data = {}, options?: Options) => await kyInstance.put(url, { json: data, ...options }).json(),
+export const endpoint = {
+  get: async (url: string, params = {}, options?: Options) =>
+    await kyInstance.get(url, { searchParams: params, ...options }).json(),
+  post: async (url: string, data = {}, options?: Options) =>
+    await kyInstance.post(url, { json: data, ...options }).json(),
+  put: async (url: string, data = {}, options?: Options) =>
+    await kyInstance.put(url, { json: data, ...options }).json(),
   delete: async (url: string, options?: Options) => await kyInstance.delete(url, options).json(),
-  upload: async (url: string, data: FormData, options?: Options) => await kyInstance.post(url, { body: data, headers: { 'Content-Type': 'multipart/form-data' }, ...options }).json(),
-  download: async (url: string, options: { method?: 'get' | 'post', params?: any, data?: any, defaultFileName: string }) => {
+  upload: async (url: string, data: FormData, options?: Options) =>
+    await kyInstance
+      .post(url, { body: data, headers: { 'Content-Type': 'multipart/form-data' }, ...options })
+      .json(),
+  download: async (
+    url: string,
+    options: { method?: 'get' | 'post'; params?: any; data?: any; defaultFileName: string }
+  ) => {
     const { method = 'get', params, data, defaultFileName } = options;
     let response: Response;
     if (method === 'get') {
@@ -109,7 +118,8 @@ const endpoint = {
     }
     await downloadFile(response, defaultFileName);
   },
-  getInstance: () => kyInstance
+  getInstance: () => kyInstance,
+  init
 };
 
 export default endpoint;

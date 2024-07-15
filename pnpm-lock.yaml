@@ -19,6 +19,9 @@ devDependencies:
   msw:
     specifier: ^2.3.1
     version: 2.3.1(typescript@5.2.2)
+  prettier:
+    specifier: 3.3.3
+    version: 3.3.3
   release-it:
     specifier: ^17.6.0
     version: 17.6.0(typescript@5.2.2)
@@ -3709,6 +3712,12 @@ packages:
 
   /preact@10.22.1:
     resolution: {integrity: sha512-jRYbDDgMpIb5LHq3hkI0bbl+l/TQ9UnkdQ0ww+lp+4MMOdqaUYdFc5qeyP+IV8FAd/2Em7drVPeKdQxsiWCf/A==}
+    dev: true
+
+  /prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /prompts@2.4.2:

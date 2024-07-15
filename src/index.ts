@@ -1,1 +1,1 @@
-export * from './endpoint';
+export { default as endpoint } from './endpoint';

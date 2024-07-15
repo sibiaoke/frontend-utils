@@ -1,7 +1,9 @@
 import { describe, it, expect, beforeAll, afterAll, beforeEach, afterEach, vi } from 'vitest';
 import ky from 'ky';
 import { server } from '../mocks/server';
-import endpoint, { init } from '../endpoint';
+import { endpoint } from '../index';
+
+const { init } = endpoint;
 
 beforeAll(() => {
   // 启动 msw 服务器
@@ -23,7 +25,7 @@ afterEach(() => {
   vi.clearAllMocks();
   // 清理所有 <a> 元素
   const links = document.querySelectorAll('a');
-  links.forEach(link => link.remove());
+  links.forEach((link) => link.remove());
 });
 
 describe('endpoint', () => {
@@ -39,7 +41,10 @@ describe('endpoint', () => {
   });
 
   it('should initialize with correct options', () => {
-    init({ prefixUrl: 'https://example.com', getRequestHeader: () => ({ 'X-Test-Header': 'test' }) });
+    init({
+      prefixUrl: 'https://example.com',
+      getRequestHeader: () => ({ 'X-Test-Header': 'test' })
+    });
     const instance = endpoint.getInstance();
     expect(instance).toBeTruthy();
     expect(instance).toBeInstanceOf(ky.constructor);
@@ -150,5 +155,4 @@ describe('endpoint', () => {
     expect(error.message).toBe('Internal Server Error');
     expect(error.status).toBe(500);
   });
-
 });
