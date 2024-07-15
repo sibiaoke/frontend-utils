@@ -19,6 +19,9 @@
   ],
   "author": "vickyhoo <vickyhoo.dev@gmail.com>",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
