@@ -68,16 +68,31 @@ endpoint.upload('api/v1/upload', formData).then(data => {
 
 下载文件时，会尝试从响应头中获取文件名，如果没有文件名则使用提供的默认文件名：
 
+#### 使用 POST 方法下载文件
+
 ```ts
 await endpoint.download('api/v1/download', {
   method: 'post', // or 'get'
-  data: { key: 'value' }, // for post method
+  data: { key: 'value' }, // 仅对 post 方法
   defaultFileName: 'default.txt'
 });
 ```
+
+#### 使用 GET 方法下载文件
 
 ```ts
 endpoint.download('api/v1/download', { method: 'get', defaultFileName: 'default.txt' }).then(() => {
   console.log('文件下载完成');
 });
 ```
+
+### 检查实例
+
+可以使用 `getInstance` 方法来获取当前的 `ky` 实例，以便进行更多自定义操作。
+
+```ts
+const kyInstance = endpoint.getInstance();
+// 使用 kyInstance 进行更多操作
+```
+
+以上文档示例展示了如何使用各个方法，并涵盖了初始化、自定义 headers 和 toast 函数、发送不同类型的请求以及下载文件的具体用法。
