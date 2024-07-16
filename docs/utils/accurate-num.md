@@ -18,7 +18,7 @@
 #### 使用示例
 
 ```ts
-import { accurateNum } from './utils/accurateNum';
+import { accurateNum } from '@sibiaoke/utils';
 
 // 处理简单的浮点数
 console.log(accurateNum(0.1)); // 输出: 0.1
