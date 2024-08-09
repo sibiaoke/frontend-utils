@@ -6,11 +6,11 @@
 首先需要初始化 Endpoint 实例，可以传入自定义的 headers 和 toast 函数。
 
 ```ts
-import { init } from './endpoint';
+import { endpoint } from '@sibiaoke/utils';
 // 错误提示方法，用 ant-design 举例
 import { message } from 'antd';
 
-init({
+endpoint.init({
   prefixUrl: 'https://api.example.com',
   getRequestHeader: () => ({
     'X-Custom-Header': 'value'

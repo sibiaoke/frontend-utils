@@ -21,7 +21,9 @@ export default defineConfig({
         text: '工具 - Utils',
         items: [
           { text: '异步请求 - Endpoint', link: '/utils/endpoint' },
-          { text: '小数精度 - accurateNum', link: '/utils/accurate-num' }
+          { text: '小数精度 - accurateNum', link: '/utils/accurate-num' },
+          { text: '坐标转换 - coord', link: '/utils/coord' },
+          { text: '设备信息 - device', link: '/utils/device' },
         ]
       }
     ],
