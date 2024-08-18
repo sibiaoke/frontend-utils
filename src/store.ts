@@ -7,9 +7,9 @@ interface StoreInstance extends Store {
   namespace(namespace: string): StoreInstance;
   <T>(key: string): T;
   <T>(key: string, value: T): void;
-  local: Store;
-  session: Store;
-  page: Store;
+  local: StoreInstance;
+  session: StoreInstance;
+  page: StoreInstance;
 }
 
 const createStorageProxy = (storage: Storage, namespace?: string): StorageApi => {
@@ -82,9 +82,30 @@ function create(namespace?: string): StoreInstance {
   }) as StoreInstance;
 
   Object.setPrototypeOf(_func, local);
-  _func.local = local;
-  _func.session = session;
-  _func.page = page;
+
+  const _func_session = ((key: string, value?: any) => {
+    if (value === undefined) {
+      return session.get(key);
+    } else {
+      session.set(key, value);
+    }
+  }) as StoreInstance;
+
+  Object.setPrototypeOf(_func_session, session);
+
+  const _func_page = ((key: string, value?: any) => {
+    if (value === undefined) {
+      return page.get(key);
+    } else {
+      page.set(key, value);
+    }
+  }) as StoreInstance;
+
+  Object.setPrototypeOf(_func_page, page);
+
+  _func.local = _func;
+  _func.session = _func_session;
+  _func.page = _func_page;
   _func.namespace = (namespace: string) => create(namespace);
   return _func;
 }
