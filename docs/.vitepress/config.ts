@@ -25,6 +25,7 @@ export default defineConfig({
           { text: '小数精度 - accurateNum', link: '/utils/accurate-num' },
           { text: '坐标转换 - coord', link: '/utils/coord' },
           { text: '设备信息 - device', link: '/utils/device' },
+          { text: '命名 - naming', link: '/utils/naming' },
         ]
       }
     ],
