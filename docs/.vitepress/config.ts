@@ -26,6 +26,8 @@ export default defineConfig({
           { text: '坐标转换 - coord', link: '/utils/coord' },
           { text: '设备信息 - device', link: '/utils/device' },
           { text: '命名 - naming', link: '/utils/naming' },
+          { text: '货币 - currency', link: '/utils/currency' },
+          { text: '加密 - crypto', link: '/utils/crypto' },
         ]
       }
     ],

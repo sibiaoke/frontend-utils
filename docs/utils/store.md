@@ -49,7 +49,7 @@ console.log(value); // 输出 'value'
 - **返回值**
   - `StoreInstance`: 包含多个存储区域的实例对象。
 
-### StoreInstance.get<T>(key: string): T
+### StoreInstance.get`<T>`(key: string): T
 
 从存储中获取一个值。
 
@@ -59,7 +59,7 @@ console.log(value); // 输出 'value'
 - **返回值**
   - 存储的值，类型为 `T`。
 
-### StoreInstance.set<T>(key: string, value: T): void
+### StoreInstance.set`<T>`(key: string, value: T): void
 
 向存储中设置一个值。
 
